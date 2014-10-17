@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "precise32"
+  config.vm.box = "hashicorp/precise64"
   config.vm.network :private_network, ip: '192.168.33.10'
   config.vm.network :forwarded_port, guest: 8080, host: 4880
   config.vm.network :forwarded_port, guest: 8000, host: 4800
@@ -13,6 +13,7 @@ Vagrant.configure("2") do |config|
     puppet.manifest_file  = "default.pp"
   end
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "1024"]
+    vb.customize ["modifyvm", :id, "--memory", "3072"]
+	vb.gui = true
   end
 end
